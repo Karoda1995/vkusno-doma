@@ -5,7 +5,7 @@ const image = value => value === '' || /^data:image\/(jpeg|png|webp);base64,[A-Z
 const text = (value, max) => typeof value === 'string' && value.trim().length > 0 && value.length <= max;
 export function validRecipe(r) {
   return r && /^recipe-[a-f0-9-]{36}$/.test(r.id) && text(r.title, 100) && text(r.description, 1500)
-    && Number.isFinite(r.minutes) && r.minutes >= 1 && r.minutes <= 1440 && r.portions === 4
+    && Number.isFinite(r.minutes) && r.minutes >= 1 && r.minutes <= 1440 && Number.isInteger(r.portions) && r.portions >= 1 && r.portions <= 100000
     && text(r.cuisine, 100) && text(r.dishType, 100) && typeof r.photo === 'string' && r.photo.length <= 1400000 && image(r.photo)
     && Array.isArray(r.tags) && r.tags.length <= 5 && r.tags.every(t => text(t, 150))
     && Array.isArray(r.ingredients) && r.ingredients.length >= 1 && r.ingredients.length <= 100
