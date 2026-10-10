@@ -17,10 +17,11 @@
 <p class="storage-note">Рецепт сохранится в этом браузере на вашем устройстве.</p>
 <label>Название<input name="title" required maxlength="100" placeholder="Например, сырники"></label>
 <label>Описание<textarea name="description" required maxlength="1500" rows="3" placeholder="Расскажите о блюде"></textarea></label>
-<div class="form-columns"><label>Время, минут<input name="minutes" type="number" min="1" max="1440" value="25" required></label><label>Количество порций<input name="portions" type="number" min="1" max="20" value="4" required></label></div>
+<div class="form-columns"><label>Время, минут<input id="recipe-minutes" name="minutes" type="number" min="1" max="1440" value="25" required></label><div class="speed-field"><span>Скорость приготовления</span><output id="form-speed" for="recipe-minutes">Быстро</output><small>До 30 минут — быстро, до 60 — среднее время, больше часа — долго.</small></div></div>
+<div class="form-columns"><label>Кухня<select name="cuisine" required><option value="">Выберите кухню</option></select></label><label>Тип блюда<select name="dishType" required><option value="">Выберите тип</option></select></label></div>
 <label>Фото блюда <span class="optional">(необязательно, до 1 МБ)</span><input name="photo" type="file" accept="image/jpeg,image/png,image/webp"></label>
-<fieldset><legend>Ингредиенты</legend><div id="ingredient-fields"></div><button type="button" id="add-ingredient" class="secondary">Добавить ингредиент</button></fieldset>
-<label>Шаги приготовления<textarea name="steps" required maxlength="12000" rows="6" placeholder="Каждый шаг с новой строки. Можно написать: Заголовок | Описание"></textarea></label>
+<fieldset><legend>Ингредиенты</legend><p class="field-help">Укажите количество на 4 порции.</p><div id="ingredient-fields"></div><button type="button" id="add-ingredient" class="secondary">Добавить ингредиент</button></fieldset>
+<fieldset><legend>Шаги приготовления</legend><div id="step-fields"></div><button type="button" id="add-step" class="secondary">Добавить шаг</button></fieldset>
 <p id="form-error" role="alert" hidden></p><div class="form-actions"><button type="button" id="cancel-dialog" class="secondary">Отмена</button><button type="submit" class="primary">Сохранить рецепт</button></div>
 </form></dialog></div><div id="toast" role="status" aria-live="polite"></div>
 </body></html>
