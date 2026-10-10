@@ -10,7 +10,7 @@ export function validRecipe(r) {
     && Array.isArray(r.tags) && r.tags.length <= 5 && r.tags.every(t => text(t, 150))
     && Array.isArray(r.ingredients) && r.ingredients.length >= 1 && r.ingredients.length <= 100
     && r.ingredients.every(i => Array.isArray(i) && i.length === 4 && text(i[0], 100)
-      && (i[1] === null ? i[2] === 'по вкусу' : Number.isFinite(i[1]) && i[1] > 0 && i[1] <= 100000 && ['шт.', 'г', 'мл', 'кг', 'л'].includes(i[2]))
+      && (i[1] === null ? i[2] === 'по вкусу' : Number.isFinite(i[1]) && i[1] > 0 && i[1] <= 100000 && ['шт.', 'г', 'мл', 'кг', 'л', 'ч.л.', 'ст.л.'].includes(i[2]))
       && typeof i[3] === 'string' && i[3].length <= 50000 && (image(i[3]) || /^[a-z]+$/.test(i[3])))
     && Array.isArray(r.steps) && r.steps.length >= 1 && r.steps.length <= 100
     && r.steps.every(s => Array.isArray(s) && s.length === 2 && text(s[0], 150) && text(s[1], 3000));
