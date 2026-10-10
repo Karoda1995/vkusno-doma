@@ -1,0 +1,10 @@
+{
+  "name": "vkusno-doma-recipes",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-10-10",
+  "vars": {
+    "ALLOWED_ORIGIN": "https://karoda1995.github.io",
+    "GITHUB_REPOSITORY": "Karoda1995/vkusno-doma",
+    "GITHUB_BRANCH": "main"
+  }
+}
