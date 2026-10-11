@@ -157,6 +157,12 @@ window.INGREDIENT_CATALOG = [
     "pattern": "хлеб|батон"
   },
   {
+    "id": "lavash",
+    "name": "Лаваш",
+    "group": "Крупы, мука и хлеб",
+    "pattern": "лаваш"
+  },
+  {
     "id": "mince",
     "name": "Фарш",
     "group": "Мясо и птица",

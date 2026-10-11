@@ -263,3 +263,9 @@ Mode: built-in imagegen, one generated image per asset. Each delivered file is a
 - Output: assets/ingredients/water.jpg (2956 bytes)
 - Original: /Users/gariklankin/.codex/generated_images/01a120be-e706-7443-be79-7d642cf6de09/exec-97051842-2fc9-47af-a74b-7d5aab07b402.png
 - Prompt: Use case: product-mockup. Asset type: square 128-pixel ingredient thumbnail for a Russian recipe website. Primary request: a plain clear drinking glass filled with transparent water. Photorealistic food product photography. Isolated centered subject on a plain warm off-white background, soft studio lighting, subtle shadow. Entire item fully inside frame, generous margins. One ingredient only. No text, no labels, no logos, no watermark, no packaging text, no other food, no hands. Recognizable silhouette at a small size. Match a warm realistic recipe ingredient library.
+
+## Лаваш — 11 October 2026
+
+Mode: built-in imagegen. Output: assets/ingredients/lavash.jpg, JPEG 128 × 128; resized with sips. Original: /Users/gariklankin/.codex/generated_images/01a120be-e706-7443-be79-7d642cf6de09/exec-d34d2123-47ec-4af8-bf71-32a6b8803db7.png
+
+Prompt: Use case: product-mockup. Asset type: square ingredient thumbnail for a Russian recipe website, displayed at 128 pixels. Primary request: thin Armenian lavash flatbread, two neatly folded pale beige sheets with characteristic brown toasted spots, one loose folded edge showing the very thin soft bread. Photorealistic food product photography. Isolated centered subject on plain warm off-white background, soft studio lighting and subtle shadow. Entire lavash fully inside frame with generous margins. Only lavash, no fillings, no garnish, no plate, no hands, no text, no logo, no watermark. Recognizable silhouette at small size. Match a warm realistic ingredient catalog.
