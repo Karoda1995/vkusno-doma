@@ -6,11 +6,11 @@ const text = (value, max) => typeof value === 'string' && value.trim().length > 
 export function validRecipe(r) {
   return r && /^recipe-[a-f0-9-]{36}$/.test(r.id) && text(r.title, 100) && text(r.description, 1500)
     && Number.isFinite(r.minutes) && r.minutes >= 1 && r.minutes <= 1440 && Number.isInteger(r.portions) && r.portions >= 1 && r.portions <= 100000
-    && text(r.cuisine, 100) && text(r.dishType, 100) && typeof r.photo === 'string' && r.photo.length <= 1400000 && image(r.photo)
-    && Array.isArray(r.tags) && r.tags.length <= 5 && r.tags.every(t => text(t, 150))
+    && text(r.cuisine, 100) && text(r.dishType, 100) && (r.dishTypes === undefined || (Array.isArray(r.dishTypes) && r.dishTypes.length >= 1 && r.dishTypes.length <= 11 && new Set(r.dishTypes).size === r.dishTypes.length && r.dishTypes.every(t => text(t, 100)) && r.dishTypes[0] === r.dishType)) && typeof r.photo === 'string' && r.photo.length <= 1400000 && image(r.photo)
+    && Array.isArray(r.tags) && r.tags.length <= 14 && r.tags.every(t => text(t, 150))
     && Array.isArray(r.ingredients) && r.ingredients.length >= 1 && r.ingredients.length <= 100
     && r.ingredients.every(i => Array.isArray(i) && i.length === 4 && text(i[0], 100)
-      && (i[1] === null ? i[2] === 'по вкусу' : Number.isFinite(i[1]) && i[1] > 0 && i[1] <= 100000 && ['шт.', 'г', 'мл', 'кг', 'л', 'ч.л.', 'ст.л.'].includes(i[2]))
+      && (i[1] === null ? ['по вкусу','на глаз'].includes(i[2]) : Number.isFinite(i[1]) && i[1] > 0 && i[1] <= 100000 && ['шт.', 'г', 'мл', 'кг', 'л', 'ч.л.', 'ст.л.'].includes(i[2]))
       && typeof i[3] === 'string' && i[3].length <= 50000 && (image(i[3]) || /^[a-z]+$/.test(i[3])))
     && Array.isArray(r.steps) && r.steps.length >= 1 && r.steps.length <= 100
     && r.steps.every(s => Array.isArray(s) && s.length === 2 && text(s[0], 150) && text(s[1], 3000));
@@ -36,6 +36,8 @@ async function sessionValid(request, env) {
     return verified && data.scope === 'recipe:create' && data.expires > Date.now();
   } catch { return false; }
 }
+function canonical(value) { return JSON.stringify(value, (key, item) => item && typeof item === 'object' && !Array.isArray(item) ? Object.fromEntries(Object.keys(item).sort().map(k=>[k,item[k]])) : item); }
+export async function recipeRevision(recipe) { return Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',enc.encode(canonical(recipe))))).map(b=>b.toString(16).padStart(2,'0')).join(''); }
 async function samePassword(a,b) {
   const [x,y] = await Promise.all([a,b].map(p=>crypto.subtle.digest('SHA-256',enc.encode(p))));
   let different=0;new Uint8Array(x).forEach((byte,i)=>{different|=byte^new Uint8Array(y)[i]});return different===0;
@@ -67,10 +69,11 @@ export async function handleRequest(request, env, githubFetch=fetch) {
       if(typeof body.password!=='string'||body.password.length>200||!await samePassword(body.password,env.AUTHOR_PASSWORD))return reply(401,{error:'Неверный пароль.'});
       return reply(200,{token:await issueSession(env)});
     }
-    if(path!=='/recipes')return reply(404,{error:'Страница не найдена.'});
+    const editId=path.match(/^\/recipes\/(recipe-[a-f0-9-]{36})$/)?.[1];
+    if(path!=='/recipes'&&!editId)return reply(404,{error:'Страница не найдена.'});
     if(!await sessionValid(request,env))return reply(401,{error:'Войдите для добавления рецепта.'});
-    const recipe=await readBody(request);
-    if(!validRecipe(recipe))return reply(400,{error:'Проверьте поля рецепта.'});
+    const body=await readBody(request),recipe=editId?body.recipe:body;
+    if(!validRecipe(recipe)||(editId&&(recipe.id!==editId||!/^([a-f0-9]{64})$/.test(body.baseRevision||''))))return reply(400,{error:'Проверьте поля рецепта.'});
     // Only the configured repository, branch and recipe folder are writable.
     const repo=env.GITHUB_REPOSITORY || 'Karoda1995/vkusno-doma';
     if(!/^[\w.-]+\/[\w.-]+$/.test(repo))return reply(503,{error:'Сохранение временно недоступно.'});
@@ -78,23 +81,27 @@ export async function handleRequest(request, env, githubFetch=fetch) {
     const url=`https://api.github.com/repos/${repo}/contents/data/recipes/${recipe.id}.json`;
     const githubHeaders={'Authorization':`Bearer ${env.GITHUB_TOKEN}`,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','User-Agent':'VkusnoDoma','Content-Type':'application/json'};
     const content=encode(JSON.stringify({schemaVersion:1,recipes:[recipe]},null,2));
+    let existing;
     const lookup=await githubFetch(`${url}?ref=${encodeURIComponent(branch)}`,{headers:githubHeaders});
     if(lookup.ok){
-      const existing=await lookup.json();
+      existing=await lookup.json();
       if(existing.content?.replace(/\s/g,'')===content)return reply(200,{saved:true,id:recipe.id});
-      return reply(409,{error:'Этот рецепт уже сохранён. Обновите каталог.'});
+      if(!editId)return reply(409,{error:'Этот рецепт уже сохранён. Обновите каталог.'});
+      let previous;try{previous=JSON.parse(decode(existing.content.replace(/\s/g,''))).recipes?.[0]}catch{return reply(502,{error:'Не удалось прочитать рецепт.'})}
+      if(!previous||await recipeRevision(previous)!==body.baseRevision)return reply(409,{error:'Рецепт уже изменён на другом устройстве. Закройте форму, обновите страницу и откройте рецепт заново. Ваши поля пока остались в форме.'});
     }
-    if(lookup.status!==404)return reply(502,{error:'Не удалось проверить сохранение. Попробуйте ещё раз.'});
-    const result=await githubFetch(url,{method:'PUT',headers:githubHeaders,body:JSON.stringify({message:`Add recipe: ${recipe.title}`,branch,content})});
+    if(!lookup.ok&&lookup.status!==404)return reply(502,{error:'Не удалось проверить сохранение. Попробуйте ещё раз.'});
+    if(editId&&!lookup.ok)return reply(404,{error:'Рецепт не найден. Обновите страницу.'});
+    const result=await githubFetch(url,{method:'PUT',headers:githubHeaders,body:JSON.stringify({message:`${editId?'Update':'Add'} recipe: ${recipe.title}`,branch,content,...(editId?{sha:existing.sha}:{})})});
     if(!result.ok){
       // A repeated submission can race with the original after a timeout.
       if([409,422].includes(result.status)){
         const check=await githubFetch(`${url}?ref=${encodeURIComponent(branch)}`,{headers:githubHeaders});
         if(check.ok&&(await check.json()).content?.replace(/\s/g,'')===content)return reply(200,{saved:true,id:recipe.id});
       }
-      return reply(502,{error:'Не удалось сохранить рецепт. Ваши поля остались в форме.'});
+      return reply(editId&&[409,422].includes(result.status)?409:502,{error:editId&&[409,422].includes(result.status)?'Рецепт изменён во время сохранения. Обновите страницу перед повторным редактированием.':'Не удалось сохранить рецепт. Ваши поля остались в форме.'});
     }
     const saved=await result.json();
-    return reply(201,{saved:true,id:recipe.id,commit:saved.commit?.sha});
+    return reply(editId?200:201,{saved:true,id:recipe.id,commit:saved.commit?.sha});
   }catch(error){return reply(error.status||502,{error:error.message&&error.status?error.message:'Не удалось сохранить рецепт. Попробуйте ещё раз.'})}
 }

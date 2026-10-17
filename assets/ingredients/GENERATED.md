@@ -269,3 +269,27 @@ Mode: built-in imagegen, one generated image per asset. Each delivered file is a
 Mode: built-in imagegen. Output: assets/ingredients/lavash.jpg, JPEG 128 × 128; resized with sips. Original: /Users/gariklankin/.codex/generated_images/01a120be-e706-7443-be79-7d642cf6de09/exec-d34d2123-47ec-4af8-bf71-32a6b8803db7.png
 
 Prompt: Use case: product-mockup. Asset type: square ingredient thumbnail for a Russian recipe website, displayed at 128 pixels. Primary request: thin Armenian lavash flatbread, two neatly folded pale beige sheets with characteristic brown toasted spots, one loose folded edge showing the very thin soft bread. Photorealistic food product photography. Isolated centered subject on plain warm off-white background, soft studio lighting and subtle shadow. Entire lavash fully inside frame with generous margins. Only lavash, no fillings, no garnish, no plate, no hands, no text, no logo, no watermark. Recognizable silhouette at small size. Match a warm realistic ingredient catalog.
+
+## 17 October 2026
+
+Mode: built-in imagegen; separate asset per call; JPEG 128 × 128 via sips.
+
+### Чили-соус
+Output: assets/ingredients/chilisauce.jpg
+Original: /Users/gariklankin/.codex/generated_images/01a120be-e706-7443-be79-7d642cf6de09/exec-c62aab84-fd76-47d5-9565-63f9aef66c34.png
+Prompt: Use case: product-mockup. Asset type: square ingredient thumbnail for a recipe website displayed at 128 pixels. Primary request: a small plain ceramic bowl filled with glossy red chili sauce. Photorealistic food product photography, isolated centered object on plain warm off-white background, soft studio lighting and subtle shadow. Whole object fully inside frame, generous margins. One ingredient only, no other foods, no hands, no text, labels, logos or watermark. Recognizable at small size, warm realistic ingredient catalog.
+
+### Паприка сладкая
+Output: assets/ingredients/paprika.jpg
+Original: /Users/gariklankin/.codex/generated_images/01a120be-e706-7443-be79-7d642cf6de09/exec-228098f4-15c9-4a07-84a9-5ddf6b4075e4.png
+Prompt: Use case: product-mockup. Asset type: square ingredient thumbnail for a recipe website displayed at 128 pixels. Primary request: a small ceramic bowl with a neat mound of finely ground deep red sweet paprika powder. Photorealistic food product photography, isolated centered object on plain warm off-white background, soft studio lighting and subtle shadow. Whole object fully inside frame, generous margins. One ingredient only, no other foods, no hands, no text, labels, logos or watermark. Recognizable at small size, warm realistic ingredient catalog.
+
+### Сухой чеснок
+Output: assets/ingredients/garlicpowder.jpg
+Original: /Users/gariklankin/.codex/generated_images/01a120be-e706-7443-be79-7d642cf6de09/exec-7b6c05d6-ad97-4936-8d5c-98b79417a81b.png
+Prompt: Use case: product-mockup. Asset type: square ingredient thumbnail for a recipe website displayed at 128 pixels. Primary request: a small ceramic bowl filled with pale beige dried garlic powder and fine granules. Photorealistic food product photography, isolated centered object on plain warm off-white background, soft studio lighting and subtle shadow. Whole object fully inside frame, generous margins. One ingredient only, no other foods, no hands, no text, labels, logos or watermark. Recognizable at small size, warm realistic ingredient catalog.
+
+### Горчица
+Output: assets/ingredients/mustard.jpg
+Original: /Users/gariklankin/.codex/generated_images/01a120be-e706-7443-be79-7d642cf6de09/exec-ee01ab75-165b-43c3-a7a7-fcabee8342ce.png
+Prompt: Use case: product-mockup. Asset type: square ingredient thumbnail for a recipe website displayed at 128 pixels. Primary request: a small ceramic bowl containing thick golden yellow prepared mustard. Photorealistic food product photography, isolated centered object on plain warm off-white background, soft studio lighting and subtle shadow. Whole object fully inside frame, generous margins. One ingredient only, no other foods, no hands, no text, labels, logos or watermark. Recognizable at small size, warm realistic ingredient catalog.

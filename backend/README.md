@@ -2,7 +2,7 @@
 
 The browser sends POST /recipes to this server. The server validates the author session and saves a JSON file to Karoda1995/vkusno-doma, branch main, folder data/recipes. GitHub Pages then publishes the updated shared catalog. Existing recipes and Safari data remain intact.
 
-A recipe is reported as saved only after GitHub confirms its creation. Failed requests leave the form intact. Repeating the same submission reuses its recipe ID and checks the existing file; it never overwrites another recipe or makes a duplicate commit.
+A recipe is reported as saved only after GitHub confirms its creation. Failed requests leave the form intact. Repeating the same submission reuses its recipe ID and checks the existing file; it never overwrites another recipe or makes a duplicate commit. Authorised edits use POST /recipes/:id with {recipe, baseRevision}; baseRevision is the SHA-256 of recursively key-sorted JSON for the original recipe. The server compares this revision and passes the current GitHub file SHA to the write. Stale edits return 409. A repeated identical edit succeeds without a duplicate commit.
 
 ## Cloudflare Workers deployment
 
@@ -14,7 +14,7 @@ Deploy worker.mjs with wrangler.jsonc. Configure these encrypted server secrets 
 
 The public variables already restrict the repository, branch and browser origin. After deployment, set apiBase in ../site-config.js to the Worker HTTPS URL, then publish the frontend. Do not deploy the changed frontend with an empty apiBase: this deliberately prevents reporting local-only creation as a successful shared save.
 
-An author session lasts up to 24 hours and is held in browser session storage. GitHub credentials remain server-side. Visitors can browse recipes without signing in. Creating recipes requires author login; repeated recipe submissions within a valid session need only the Save button.
+An author session lasts up to 24 hours and is held in browser session storage. GitHub credentials remain server-side. Visitors can browse recipes without signing in. Creating and editing recipes require author login; repeated recipe submissions within a valid session need only the Save button.
 
 For Vercel, use recipe-api.mjs through an HTTP adapter with the same environment variables. The deployment adapter has not been configured yet.
 
