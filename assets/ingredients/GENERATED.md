@@ -293,3 +293,52 @@ Prompt: Use case: product-mockup. Asset type: square ingredient thumbnail for a 
 Output: assets/ingredients/mustard.jpg
 Original: /Users/gariklankin/.codex/generated_images/01a120be-e706-7443-be79-7d642cf6de09/exec-ee01ab75-165b-43c3-a7a7-fcabee8342ce.png
 Prompt: Use case: product-mockup. Asset type: square ingredient thumbnail for a recipe website displayed at 128 pixels. Primary request: a small ceramic bowl containing thick golden yellow prepared mustard. Photorealistic food product photography, isolated centered object on plain warm off-white background, soft studio lighting and subtle shadow. Whole object fully inside frame, generous margins. One ingredient only, no other foods, no hands, no text, labels, logos or watermark. Recognizable at small size, warm realistic ingredient catalog.
+
+## 19 October 2026 — Birria tacos
+
+Mode: built-in imagegen; separate image per ingredient; JPEG 128 × 128, resized with sips. Ground red chili reuses paprika.jpg as requested.
+
+### Тортильи
+Output: assets/ingredients/tortilla.jpg
+Original: /Users/gariklankin/.codex/generated_images/01a120be-e706-7443-be79-7d642cf6de09/exec-c48faf3b-36c6-40a6-b499-9ea92a13b297.png
+Prompt: Use case: product-mockup. Asset type: square ingredient thumbnail for a recipe website displayed at 128 pixels. Primary request: a small stack of round thin wheat tortillas, one edge folded slightly. Photorealistic food product photograph, isolated centered on plain warm off-white background, soft studio lighting, subtle shadow. Entire subject fully inside frame with generous margins. Only the named ingredient, no unrelated food, no hands, no text, labels, logos or watermark. Recognizable at small size, warm realistic ingredient catalog.
+
+### Бульонные кубики
+Output: assets/ingredients/bouillon.jpg
+Original: /Users/gariklankin/.codex/generated_images/01a120be-e706-7443-be79-7d642cf6de09/exec-d6bcbdb4-3005-475e-9287-555b59b11caa.png
+Prompt: Use case: product-mockup. Asset type: square ingredient thumbnail for a recipe website displayed at 128 pixels. Primary request: two unwrapped golden brown beef bouillon stock cubes, no wrapper. Photorealistic food product photograph, isolated centered on plain warm off-white background, soft studio lighting, subtle shadow. Entire subject fully inside frame with generous margins. Only the named ingredient, no unrelated food, no hands, no text, labels, logos or watermark. Recognizable at small size, warm realistic ingredient catalog.
+
+### Кинза
+Output: assets/ingredients/cilantro.jpg
+Original: /Users/gariklankin/.codex/generated_images/01a120be-e706-7443-be79-7d642cf6de09/exec-bc93f304-47ab-4c09-a2d3-23a311f1aabe.png
+Prompt: Use case: product-mockup. Asset type: square ingredient thumbnail for a recipe website displayed at 128 pixels. Primary request: a small fresh bunch of cilantro coriander leaves with stems. Photorealistic food product photograph, isolated centered on plain warm off-white background, soft studio lighting, subtle shadow. Entire subject fully inside frame with generous margins. Only the named ingredient, no unrelated food, no hands, no text, labels, logos or watermark. Recognizable at small size, warm realistic ingredient catalog.
+
+### Кумин
+Output: assets/ingredients/cumin.jpg
+Original: /Users/gariklankin/.codex/generated_images/01a120be-e706-7443-be79-7d642cf6de09/exec-1f7cdee2-863c-415a-8604-076f9ae47155.png
+Prompt: Use case: product-mockup. Asset type: square ingredient thumbnail for a recipe website displayed at 128 pixels. Primary request: a small ceramic bowl of dry brown cumin seeds. Photorealistic food product photograph, isolated centered on plain warm off-white background, soft studio lighting, subtle shadow. Entire subject fully inside frame with generous margins. Only the named ingredient, no unrelated food, no hands, no text, labels, logos or watermark. Recognizable at small size, warm realistic ingredient catalog.
+
+### Орегано сушёный
+Output: assets/ingredients/oregano.jpg
+Original: /Users/gariklankin/.codex/generated_images/01a120be-e706-7443-be79-7d642cf6de09/exec-65d17ac0-b894-459b-b9a3-7d330c27cb37.png
+Prompt: Use case: product-mockup. Asset type: square ingredient thumbnail for a recipe website displayed at 128 pixels. Primary request: a small ceramic bowl of dried green oregano herb flakes. Photorealistic food product photograph, isolated centered on plain warm off-white background, soft studio lighting, subtle shadow. Entire subject fully inside frame with generous margins. Only the named ingredient, no unrelated food, no hands, no text, labels, logos or watermark. Recognizable at small size, warm realistic ingredient catalog.
+
+### Корица молотая
+Output: assets/ingredients/cinnamon.jpg
+Original: /Users/gariklankin/.codex/generated_images/01a120be-e706-7443-be79-7d642cf6de09/exec-960c5293-1504-40db-9dc0-527eecf46c2b.png
+Prompt: Use case: product-mockup. Asset type: square ingredient thumbnail for a recipe website displayed at 128 pixels. Primary request: a small ceramic bowl of finely ground warm brown cinnamon powder. Photorealistic food product photograph, isolated centered on plain warm off-white background, soft studio lighting, subtle shadow. Entire subject fully inside frame with generous margins. Only the named ingredient, no unrelated food, no hands, no text, labels, logos or watermark. Recognizable at small size, warm realistic ingredient catalog.
+
+### Гвоздика молотая
+Output: assets/ingredients/cloves.jpg
+Original: /Users/gariklankin/.codex/generated_images/01a120be-e706-7443-be79-7d642cf6de09/exec-31a9ab3f-22de-49c8-aa87-92dd1982aec4.png
+Prompt: Use case: product-mockup. Asset type: square ingredient thumbnail for a recipe website displayed at 128 pixels. Primary request: a small ceramic bowl of dark brown ground clove spice with two whole cloves beside it. Photorealistic food product photograph, isolated centered on plain warm off-white background, soft studio lighting, subtle shadow. Entire subject fully inside frame with generous margins. Only the named ingredient, no unrelated food, no hands, no text, labels, logos or watermark. Recognizable at small size, warm realistic ingredient catalog.
+
+### Яблочный уксус
+Output: assets/ingredients/applevinegar.jpg
+Original: /Users/gariklankin/.codex/generated_images/01a120be-e706-7443-be79-7d642cf6de09/exec-2a49e6db-849b-4ccd-b7a5-73ade24cc96a.png
+Prompt: Use case: product-mockup. Asset type: square ingredient thumbnail for a recipe website displayed at 128 pixels. Primary request: a small clear glass cruet containing pale amber apple cider vinegar, no label. Photorealistic food product photograph, isolated centered on plain warm off-white background, soft studio lighting, subtle shadow. Entire subject fully inside frame with generous margins. Only the named ingredient, no unrelated food, no hands, no text, labels, logos or watermark. Recognizable at small size, warm realistic ingredient catalog.
+
+### Лавровый лист
+Output: assets/ingredients/bayleaf.jpg
+Original: /Users/gariklankin/.codex/generated_images/01a120be-e706-7443-be79-7d642cf6de09/exec-06621920-b066-46e5-84dd-5ffbfd13293d.png
+Prompt: Use case: product-mockup. Asset type: square ingredient thumbnail for a recipe website displayed at 128 pixels. Primary request: three dry olive green bay leaves arranged overlapping. Photorealistic food product photograph, isolated centered on plain warm off-white background, soft studio lighting, subtle shadow. Entire subject fully inside frame with generous margins. Only the named ingredient, no unrelated food, no hands, no text, labels, logos or watermark. Recognizable at small size, warm realistic ingredient catalog.
